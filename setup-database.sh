@@ -6,4 +6,5 @@ gosu postgres postgres --single <<- EOSQL
    GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
 EOSQL
 echo ""
-echo "******DOCKER DATABASE CREATED******
+echo "******DOCKER DATABASE CREATED******"
+exit 0
