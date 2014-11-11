@@ -13,3 +13,4 @@ gosu postgres postgres --single <<- EOSQL
 EOSQL
 echo ""
 echo "******DOCKER DATABASE CREATED******"
+exit 0
