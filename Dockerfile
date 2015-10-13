@@ -1,4 +1,4 @@
-FROM postgres:latest
+FROM postgres:9.3.9
 ENV DB_NAME database
 ENV DB_USER admin
 ENV DB_PASS password
