@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TEST=`gosu postgres postgres --single <<- EOSQL
+TEST=`psql -U postgres <<-EOSQL
    SELECT 1 FROM pg_database WHERE datname='$DB_NAME';
 EOSQL`
 
@@ -10,15 +10,15 @@ if [[ $TEST == "1" ]]; then
     # $? is 0
     exit 0
 else
-gosu postgres postgres --single <<- EOSQL
+psql -U postgres <<-EOSQL
    CREATE ROLE $DB_USER WITH LOGIN ENCRYPTED PASSWORD '${DB_PASS}' CREATEDB;
 EOSQL
 
-gosu postgres postgres --single <<- EOSQL
+psql -U postgres <<-EOSQL
    CREATE DATABASE $DB_NAME WITH OWNER $DB_USER TEMPLATE template0 ENCODING 'UTF8';
 EOSQL
 
-gosu postgres postgres --single <<- EOSQL
+psql -U postgres <<-EOSQL
    GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
 EOSQL
 fi
